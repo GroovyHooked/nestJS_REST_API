@@ -10,7 +10,9 @@ import { RepairsService } from './repairs.service';
 })
 @Controller('repairs')
 export class RepairsController implements CrudController<Repair>{
+    
     constructor(public service: RepairsService){}
+    
     @Get()
     all() {
         return this.service.getRepairs()

@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToMany, JoinTable } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, OneToOne, JoinColumn } from "typeorm";
 import { ApiProperty } from "@nestjs/swagger";
 import { Scooter } from "src/scooters/scooter.entity";
 import { type } from "os";
@@ -22,9 +22,10 @@ export class Repair {
     price: number;
 
     @ApiProperty()
-    @ManyToMany( type => Scooter, scooter => scooter.repair, {
+    scooterId: number;
+    @OneToOne( () => Scooter, {
         cascade: true
     })
-    @JoinTable()
+    @JoinColumn({name: "scooterId"})
     scooter: Scooter[];
 }

@@ -1,4 +1,5 @@
 import { Controller, Post, Body, Get, Put, Delete, Param } from '@nestjs/common';
+import { ApiCreatedResponse } from '@nestjs/swagger';
 import { Crud ,CrudController } from '@nestjsx/crud';
 import { Scooter } from './scooter.entity';
 import { ScootersService } from './scooters.service';
@@ -12,6 +13,7 @@ import { ScootersService } from './scooters.service';
 @Controller('scooters')
 export class ScootersController implements CrudController<Scooter>{
     constructor(public service: ScootersService){}
+
     @Get()
     all() {
         return this.service.getScooters()
@@ -23,6 +25,7 @@ export class ScootersController implements CrudController<Scooter>{
     }
 
     @Post()
+    @ApiCreatedResponse({ description: "Generate a scooter database row" })
     create(@Body() scooter: Scooter) {
         return this.service.createScooter(scooter);
     }

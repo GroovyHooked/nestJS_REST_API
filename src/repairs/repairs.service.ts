@@ -6,9 +6,13 @@ import { Repair } from './repair.entity';
 
 @Injectable()
 export class RepairsService extends TypeOrmCrudService<Repair> {
-    constructor(@InjectRepository(Repair) private repairsRepo: Repository<Repair>){
+
+    constructor(@InjectRepository(Repair) 
+    private repairsRepo: Repository<Repair>)
+    {
         super(repairsRepo)
     }
+    
     async getRepairs(): Promise<Repair[]> {
         return await this.repairsRepo.find();
     }
