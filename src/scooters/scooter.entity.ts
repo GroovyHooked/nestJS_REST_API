@@ -2,6 +2,8 @@ import { Column, Entity, PrimaryGeneratedColumn, OneToOne } from "typeorm";
 import { ApiProperty } from "@nestjs/swagger";
 import { Repair } from "src/repairs/repair.entity";
 
+
+
 @Entity()
 export class Scooter {
 
