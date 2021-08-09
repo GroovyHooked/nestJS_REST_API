@@ -1,20 +1,19 @@
-import { Column, Entity, PrimaryGeneratedColumn, OneToOne, JoinColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, OneToOne, ManyToOne, JoinColumn } from "typeorm";
 import { ApiProperty } from "@nestjs/swagger";
 import { Scooter } from "src/scooters/scooter.entity";
-import { type } from "os";
 
 @Entity()
 export class Repair {
 
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn({ type: "int" })
     id: number;
 
     @ApiProperty()
-    @Column()
+    @Column({ type: "varchar", length: 25 })
     name: string;
 
     @ApiProperty()
-    @Column()
+    @Column({ type: "varchar", length: 255 })
     description: string;
 
     @ApiProperty()
@@ -22,10 +21,10 @@ export class Repair {
     price: number;
 
     @ApiProperty()
+    @Column()
     scooterId: number;
-    @OneToOne( () => Scooter, {
-        cascade: true
-    })
-    @JoinColumn({name: "scooterId"})
-    scooter: Scooter[];
+    @ManyToOne(() => Scooter, scooter => scooter.repair)
+    @JoinColumn({ name: "scooterId"})
+    scooter: Scooter;
+
 }

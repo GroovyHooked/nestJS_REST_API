@@ -1,8 +1,9 @@
 import { Controller, Post, Body, Get, Put, Delete, Param } from '@nestjs/common';
-import { ApiCreatedResponse } from '@nestjs/swagger';
+import { ApiBody, ApiCreatedResponse, ApiOkResponse } from '@nestjs/swagger';
 import { Crud ,CrudController } from '@nestjsx/crud';
 import { Scooter } from './scooter.entity';
 import { ScootersService } from './scooters.service';
+
 
 
 @Crud({
@@ -25,7 +26,9 @@ export class ScootersController implements CrudController<Scooter>{
     }
 
     @Post()
+    @ApiBody({description: "test de déscription"})
     @ApiCreatedResponse({ description: "Generate a scooter database row" })
+    @ApiOkResponse({ description: "Item created"})
     create(@Body() scooter: Scooter) {
         return this.service.createScooter(scooter);
     }

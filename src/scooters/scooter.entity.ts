@@ -1,8 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn, OneToOne } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 import { ApiProperty } from "@nestjs/swagger";
 import { Repair } from "src/repairs/repair.entity";
-
-
 
 @Entity()
 export class Scooter {
@@ -30,8 +28,14 @@ export class Scooter {
     @Column()
     mileage: number;
 
-    /*@ApiProperty()
-    @OneToOne( () => Repair, repair => repair.scooter)
-    repair: Repair[];*/
+    @ApiProperty()
+    @OneToMany( () => Repair, repair => repair.scooter)
+    repair: Repair[];
 
+    addrepair(repair: Repair){
+        if(this.repair == null){
+            this.repair = Array<Repair>();
+        }
+        this.repair.push(repair)
+    }
 }
