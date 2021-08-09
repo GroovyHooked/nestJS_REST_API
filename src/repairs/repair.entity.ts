@@ -2,7 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn, OneToOne, ManyToOne, JoinColumn
 import { ApiProperty } from "@nestjs/swagger";
 import { Scooter } from "src/scooters/scooter.entity";
 
-@Entity()
+@Entity("repair")
 export class Repair {
 
     @PrimaryGeneratedColumn({ type: "int" })
@@ -23,7 +23,8 @@ export class Repair {
     @ApiProperty()
     @Column()
     scooterId: number;
-    @ManyToOne(() => Scooter, scooter => scooter.repair)
+
+    @ManyToOne( type => Scooter, scooter => scooter.repairs)
     @JoinColumn({ name: "scooterId"})
     scooter: Scooter;
 
