@@ -1,0 +1,3 @@
+http://localhost:3000/scooters
+
+http://localhost:3000/scooters/1?withRepairs=1
