@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm'
+<<<<<<< HEAD
 import { Repair } from 'src/repairs/repair.entity';
 import { createQueryBuilder, Repository, createConnection } from 'typeorm';
 import { Scooter } from './scooter.entity';
@@ -15,10 +16,31 @@ export class ScootersService {
 
      getScooter(_id: number): Promise<Scooter> {
         return  this.scootersRepo.findOne({
+=======
+import { createQueryBuilder, Repository } from 'typeorm';
+import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
+import { Scooter } from './scooter.entity';
+import { Repair } from 'src/repairs/repair.entity';
+
+@Injectable()
+export class ScootersService extends TypeOrmCrudService<Scooter> {
+
+    constructor(@InjectRepository(Scooter) public scootersRepo: Repository<Scooter> ){
+        super(scootersRepo)
+    }
+
+    async getScooters(): Promise<Scooter[]> {
+        return await this.scootersRepo.find();
+    }
+
+    async getScooter(_id: number): Promise<Scooter> {
+        return await this.scootersRepo.findOne({
+>>>>>>> 8d08210cd958c78298cb3ae19eb62deb8fc37b34
             select: ["name", "motorization", "brand", "model", "mileage"],
             where: [{ "id": _id }],
         });
     }
+<<<<<<< HEAD
     /*getRepairs() {
         const qb = this.scootersRepo.createQueryBuilder('repairs');
         return qb.getMany();
@@ -26,6 +48,8 @@ export class ScootersService {
         console.log(qb.getMany());
     }*/
 
+=======
+>>>>>>> 8d08210cd958c78298cb3ae19eb62deb8fc37b34
 
     async getScooterWithRepairs(_id: number): Promise<Scooter> {
         return createQueryBuilder("scooter")
@@ -34,6 +58,7 @@ export class ScootersService {
             .getOne() as Promise<Scooter>
     }
 
+<<<<<<< HEAD
     getScooterWithRepairs2(_id: number) {
         return createQueryBuilder("scooter")
             .leftJoinAndSelect("Scooter.repairs", "repair", "scooter.id = repair.scooterId")
@@ -84,6 +109,8 @@ export class ScootersService {
         
     }
 
+=======
+>>>>>>> 8d08210cd958c78298cb3ae19eb62deb8fc37b34
     async createScooter(scooter: Scooter) {
         this.scootersRepo.insert(scooter)
     }

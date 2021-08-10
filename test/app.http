@@ -1,3 +1,11 @@
+<<<<<<< HEAD
 http://localhost:3000/scooters
 
 http://localhost:3000/scooters/1?withRepairs=1
+=======
+
+
+
+
+http://localhost:3000/scooters/1
+>>>>>>> 8d08210cd958c78298cb3ae19eb62deb8fc37b34

@@ -1,10 +1,17 @@
 {
     "type": "mysql",
     "host": "localhost",
+<<<<<<< HEAD
     "port": 3306,
     "username": "root",
     "password": "root",
     "database": "nestcrudvl",
+=======
+    "port": 8889,
+    "username": "root",
+    "password": "root",
+    "database": "nestcrud",
+>>>>>>> 8d08210cd958c78298cb3ae19eb62deb8fc37b34
     "entities": ["dist/**/**.entity{.ts,.js}"],
     "synchronize": true,
     "logging": true

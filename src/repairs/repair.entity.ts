@@ -8,9 +8,13 @@ export class Repair {
     @PrimaryGeneratedColumn({ type: "int" })
     id: number;
 
+<<<<<<< HEAD
     @ApiProperty({
         description: 'The name of the owner'
       })
+=======
+    @ApiProperty()
+>>>>>>> 8d08210cd958c78298cb3ae19eb62deb8fc37b34
     @Column({ type: "varchar", length: 25 })
     name: string;
 
